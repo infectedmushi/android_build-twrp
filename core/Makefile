@@ -2309,8 +2309,8 @@ $(INSTALLED_BOOTIMAGE_TARGET): $(recoveryimage-deps)
 ifeq ($(AB_OTA_UPDATER),true)
 ifeq ($(USE_RECOVERY_INSTALLER),true)
 ifneq ($(RECOVERY_INSTALLER_PATH),)
-	cp -fr $(RECOVERY_INSTALLER_PATH) $(PRODUCT_OUT)/installer && cp -f $(recovery_uncompressed_ramdisk) $(PRODUCT_OUT)/installer && cd $(PRODUCT_OUT)/installer && zip -qr recovery-installer META-INF magiskboot ramdisk-recovery.cpio && cp -f recovery-installer.zip ../ && rm recovery-installer.zip && rm ramdisk-recovery.cpio
-	$(call pretty,"Making recovery installer for A/B devices: $(PRODUCT_OUT)/recovery-installer.zip")
+	cp -fr $(RECOVERY_INSTALLER_PATH) $(PRODUCT_OUT)/installer && cp -f $(recovery_uncompressed_ramdisk) $(PRODUCT_OUT)/installer && cd $(PRODUCT_OUT)/installer && zip -qr $(PRODUCT_NAME)-recovery-installer META-INF magiskboot ramdisk-recovery.cpio && cp -f $(PRODUCT_NAME)-recovery-installer.zip ../ && rm $(PRODUCT_NAME)-recovery-installer.zip && rm ramdisk-recovery.cpio
+	$(call pretty,"Making recovery installer for A/B devices: $(PRODUCT_OUT)/$(PRODUCT_NAME)-recovery-installer.zip")
 endif
 endif
 endif
@@ -2322,8 +2322,8 @@ $(INSTALLED_RECOVERYIMAGE_TARGET): $(recoveryimage-deps)
 ifeq ($(AB_OTA_UPDATER),true)
 ifeq ($(USE_RECOVERY_INSTALLER),true)
 ifneq ($(RECOVERY_INSTALLER_PATH),)
-	cp -fr $(RECOVERY_INSTALLER_PATH) $(PRODUCT_OUT)/installer && cp -f $(INSTALLED_RECOVERYIMAGE_TARGET) $(PRODUCT_OUT)/installer && cd $(PRODUCT_OUT)/installer && zip -qr recovery-installer META-INF magiskboot recovery.img && cp -f recovery-installer.zip ../ && rm recovery-installer.zip && rm recovery.img
-	$(call pretty,"Making recovery installer for A/B devices: $(PRODUCT_OUT)/recovery-installer.zip")
+	cp -fr $(RECOVERY_INSTALLER_PATH) $(PRODUCT_OUT)/installer && cp -f $(INSTALLED_RECOVERYIMAGE_TARGET) $(PRODUCT_OUT)/installer && cd $(PRODUCT_OUT)/installer && zip -qr $(PRODUCT_NAME)-recovery-installer META-INF magiskboot recovery.img && cp -f $(PRODUCT_NAME)-recovery-installer.zip ../ && rm $(PRODUCT_NAME)-recovery-installer.zip && rm recovery.img
+	$(call pretty,"Making recovery installer for A/B devices: $(PRODUCT_OUT)/$(PRODUCT_NAME)-recovery-installer.zip")
 endif
 endif
 endif
